@@ -6,13 +6,14 @@ addEventListener('DOMContentLoaded', displayTasks);
 async function displayTasks(){
     const response = await fetch('/data');
     const data = await response.json();
+    tasks.innerHTML = ""
     data.forEach(obj => {
-        add_to_list(obj.task);
+        add_to_list(obj.task, obj.id, obj.completed);
     })
 }
 
 
-function add_to_list(to_add){
+function add_to_list(to_add, id, completed){
     let task = document.createElement("li");
     let label = document.createElement("label");
     let input = document.createElement("input");
@@ -23,6 +24,10 @@ function add_to_list(to_add){
 
     input.classList.add("task_chk");
     input.type = "checkbox";
+    input.checked = completed;
+    input.addEventListener('change', async() =>{
+        await fetch(`/data/${id}`, {method : 'PUT'})
+    })
 
     checkmark.classList.add("checkmark");
     text_task.classList.add("text_task");
@@ -36,6 +41,7 @@ function add_to_list(to_add){
     del_task.classList.add("del_task");
     del_task.textContent = "✖";
     del_task.onclick = del_from_list;
+    del_task.dataset.id = id;
     task.appendChild(del_task);
 
     tasks.appendChild(task);
@@ -43,6 +49,7 @@ function add_to_list(to_add){
     add_text.value = "";
 }
 
-function del_from_list() {
-    this.parentElement.remove();
+async function del_from_list() {
+    await fetch(`/data/${this.dataset.id}`, {method:'DELETE'});
+    await displayTasks();
 }
