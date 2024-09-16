@@ -26,7 +26,7 @@ app.post('/add_to_list', (req, res) =>{
                 const data = JSON.parse(file);
                 data.push(new_task);
                 fs.writeFileSync(path.resolve(__dirname, 'tasks.json'), JSON.stringify(data));
-                res.json(new_task);
+                res.redirect('/');
             }
             catch (err){
                 console.log("Error", err)
@@ -34,6 +34,17 @@ app.post('/add_to_list', (req, res) =>{
         }
     })
 
+})
+
+app.get('/data', (req, res) =>{
+    fs.readFile(path.resolve(__dirname, 'tasks.json'), 'utf8', (err, file) =>{
+        if (!err){
+            const data = JSON.parse(file);
+            res.json(data);
+        } else{
+            res.json("Something gone wrong");
+        }
+    })
 })
 
 app.listen(PORT, (req, res) => {
