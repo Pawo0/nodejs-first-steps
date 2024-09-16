@@ -1,0 +1,126 @@
+body{
+    background-color: #9a9898;
+}
+#container{
+    margin: 10vh auto auto;
+    width: 500px;
+    padding: 20px;
+    background-color: #cac7c7;
+    text-align: center;
+    border-radius: 10px;
+}
+#add_panel{
+    background-color: rgba(255, 255, 255, 0.4);
+    display: inline;
+    padding: 10px;
+    border-radius: 20px;
+}
+#add_text{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+#add_btn{
+    padding: 10px;
+    width: 80px;
+    border-radius: 20px;
+    background-color: orangered;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    margin-right: -10px;
+}
+#add_btn:hover{
+    background-color: #e34302;
+    transition: 0.1s;
+}
+#add_btn:active{
+    filter: brightness(85%);
+}
+.task{
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: 15px auto auto;
+    padding: 15px;
+    text-align: left;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 15px;
+
+    border: 1px solid #dfdddd;
+}
+.task:hover{
+    background-color: #dfdbdb;
+}
+.task input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark{
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    color: white;
+    margin: 0 5px 0 5px;
+    cursor: pointer;
+
+}
+.task:hover input ~ .checkmark{
+    background-color: #ece8e8;
+}
+.task input:checked ~ .checkmark{
+    background-color: orangered;
+}
+.task input:checked ~ .checkmark::after{
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+}
+.checkmark::after{
+    content: "✓";
+    display: none;
+}
+.task input:checked ~ .text_task{
+    color: #353535;
+    text-decoration: line-through;
+}
+.text_task{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    padding: 10px;
+    cursor: pointer;
+}
+.task_chk{
+    background-color: orangered;
+}
+.del_task{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    color: gray;
+    height: 100%;
+    width: 25px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.del_task:hover{
+    background-color: #bdbaba;
+    transition: 0.1s;
+}

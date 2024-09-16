@@ -1,0 +1,22 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon simple_http/server.js",
+    "streams": "nodemon simple_http/streams.js",
+    "express": "nodemon express/app.js",
+    "todo_app": "nodemon todo_app/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "morgan": "^1.10.0"
+  }
+}
