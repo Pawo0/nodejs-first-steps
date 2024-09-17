@@ -4,7 +4,7 @@ const tasks = document.getElementById("tasks");
 addEventListener('DOMContentLoaded', displayTasks);
 
 async function displayTasks(){
-    const response = await fetch('/data');
+    const response = await fetch('/tasks');
     const data = await response.json();
     tasks.innerHTML = ""
     data.forEach(obj => {
@@ -26,7 +26,7 @@ function add_to_list(to_add, id, completed){
     input.type = "checkbox";
     input.checked = completed;
     input.addEventListener('change', async() =>{
-        await fetch(`/data/${id}`, {method : 'PUT'})
+        await fetch(`/tasks/${id}`, {method : 'PATCH'})
     })
 
     checkmark.classList.add("checkmark");
@@ -50,6 +50,6 @@ function add_to_list(to_add, id, completed){
 }
 
 async function del_from_list() {
-    await fetch(`/data/${this.dataset.id}`, {method:'DELETE'});
+    await fetch(`/tasks/${this.dataset.id}`, {method:'DELETE'});
     await displayTasks();
 }
